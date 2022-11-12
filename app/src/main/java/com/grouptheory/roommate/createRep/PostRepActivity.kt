@@ -20,12 +20,16 @@ import com.grouptheory.roommate.DataClasses.Rep
 import com.grouptheory.roommate.R
 import com.grouptheory.roommate.RoomMateApplication
 import com.grouptheory.roommate.ui.main.MainViewModel
+import com.grouptheory.roommate.util.replaceFragmentInActivity
 
 class PostRepActivity : AppCompatActivity() {
-
+    // ViewModel for accessing live data
     private val mainViewModel: MainViewModel by viewModels {
         MainViewModel.MainViewModelFactory((application as RoomMateApplication).repository)
     }
+
+    // Fragment that is pulled up when user is selected from list
+    private var postRepFragment: PostRepFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +43,7 @@ class PostRepActivity : AppCompatActivity() {
 
         // Begin observing live data
         mainViewModel.startFetchingData()
+        // Show list of users
         mainViewModel.roommatesLiveData.observe(this) { roommates ->
             roommates?.let {
                 adapter.submitList(roommates)
@@ -46,10 +51,17 @@ class PostRepActivity : AppCompatActivity() {
         }
     }
 
+    private fun getPostRepFragment(username: String): PostRepFragment {
+
+        return PostRepFragment.newInstance(username).also {
+            replaceFragmentInActivity(it, R.id.postRepFragmentContainerView)
+        }
+    }
+
     fun onUserClick(view: View) {
         val username = view.tag as String
 
-        PostRepFragment.newInstance(username)
+        getPostRepFragment(username)
     }
 
     companion object{

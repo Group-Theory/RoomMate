@@ -19,4 +19,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="@dimen/big_padding" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fragment_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/postRepFragmentContainerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="-16dp"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
