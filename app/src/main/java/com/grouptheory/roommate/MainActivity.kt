@@ -25,12 +25,8 @@ class MainActivity : AppCompatActivity() {
                 .commitNow()
         }
 
-        val reps: List<Rep> = listOf(
-            Rep(id = 0, "Killed my dog", 300, 0, 0, -10),
-            Rep(id = 15, "Turned on the AC when I didn't want to", 300, 0, 0, 1),
-        )
+        val newRep = Rep(id = 0, "Killed my dog", 300, 0, 0, -10)
 
-        val user1: User = User(userName = "Steve", "pw",  reps = reps, score = 100)
-//        mainViewModel.insertUser(user1)
+//        mainViewModel.addNewRep(newRep, "Steve")
     }
 }

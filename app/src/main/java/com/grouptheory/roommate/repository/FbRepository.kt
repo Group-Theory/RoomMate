@@ -11,6 +11,7 @@ import com.google.firebase.ktx.Firebase
 import com.grouptheory.roommate.DataClasses.Rep
 import com.grouptheory.roommate.DataClasses.Complaint
 import com.grouptheory.roommate.DataClasses.User
+import java.util.Calendar
 
 class FbRepository {
     private val _username = "Joe"
@@ -63,24 +64,22 @@ class FbRepository {
         houseRef.child(user.userName).setValue(user)
     }
 
-    //may not need to use with updateUser
-    fun addNewChoreToUser(chore: Rep){
-        var newRef = userRef.child("chores").push()
-        chore.id = newRef.key.toString().toInt()
-        newRef.setValue(chore)
-    }
-    //may not need to use with updateUser
-    fun updateChore(chore: Rep){
-        userRef.child("chores").child(chore.id.toString()).setValue(chore)
-    }
-    //may not need to use with updateUser
-    fun addNewComplaint(complaint: Complaint){
-        var newRef = userRef.child("complaints").push()
-        complaint.id = newRef.key.toString().toInt()
-        newRef.setValue(complaint)
-    }
-    //may not need to use with updateUser
-    fun updateComplaint(complaint: Complaint){
-        userRef.child("complaints").child(complaint.id.toString()).setValue(complaint)
+    fun addNewRepToUser(rep: Rep, userName: String){
+        var chosenUserRef = houseRef.child(userName)
+        chosenUserRef.get().addOnSuccessListener {
+            rep.id = Calendar.getInstance().timeInMillis.toInt()
+            rep.dateAssigned = Calendar.getInstance().timeInMillis
+            var mUser: User? = it.getValue<User>()
+            if(mUser != null) {
+                //add new rep to list
+                var mList:MutableList<Rep> = mUser.reps as MutableList<Rep>
+                mList.add(rep)
+                mUser.reps = mList
+
+                //set score
+                mUser.score = mUser.score + rep.points
+                chosenUserRef.setValue(mUser)
+            }
+        }
     }
 }
