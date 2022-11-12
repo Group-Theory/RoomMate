@@ -43,6 +43,6 @@ class MainViewModel(private val mrepository: FbRepository): ViewModel() {
     }
 
     fun addNewRep(rep: Rep, userName: String){
-
+        repository.addNewRepToUser(rep, userName)
     }
 }

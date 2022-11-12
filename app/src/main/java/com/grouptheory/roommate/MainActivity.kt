@@ -44,12 +44,8 @@ class MainActivity : AppCompatActivity() {
         val user1 = User(userName = "Joe", "pw", score = 100, reps1)
         mainViewModel.insertUser(user1)
 
-        val reps2: List<Rep> = listOf(
-            Rep(id = 0, "Killed my dog", 300, 0, 0, -10),
-            Rep(id = 15, "Turned on the AC when I didn't want to", 300, 0, 0, 1),
-        )
+        val newRep = Rep(id = 0, "Killed my dog", 300, 0, 0, -10)
 
-        val user2: User = User(userName = "Mama", "wp",  reps = reps2, score = 100)
-       mainViewModel.insertUser(user2)
+//        mainViewModel.addNewRep(newRep, "Steve")
     }
 }
