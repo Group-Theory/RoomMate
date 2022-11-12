@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -19,25 +20,40 @@ class RepListAdapter : ListAdapter<Rep, RepListAdapter.RepViewHolder>(AlertsComp
     override fun onBindViewHolder(holder: RepViewHolder, position: Int) {
         val current = getItem(position)
         // TODO
-        holder.bind(current.id.toString())
+        holder.bind(current.points)
     }
 
     class RepViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO: Other fields
-        private val alertItemView: TextView
+        private val isComplaint: TextView
+        private val complaintBackgroundColor = ContextCompat.getColor(
+            itemView.context,
+            R.color.is_complaint
+        )
+        private val complaintTextColor = ContextCompat.getColor(
+            itemView.context,
+            R.color.white
+        )
 
         init {
-            alertItemView = itemView.findViewById(R.id.assignedUser)
+            isComplaint = itemView.findViewById(R.id.is_complaint)
         }
 
-        fun bind(assignedUser: String) {
-            alertItemView.text = assignedUser
+        fun bind(points: Int) {
+            if (points < 0) {
+                isComplaint.setBackgroundColor(complaintBackgroundColor)
+                isComplaint.setTextColor(complaintTextColor )
+                isComplaint.text = "Complaint!"
+            }
+            else {
+                isComplaint.text = "Good work!"
+            }
         }
 
         companion object {
             fun create(parent: ViewGroup): RepViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.recyclerview_alerts, parent, false)
+                    .inflate(R.layout.recyclerview_rep, parent, false)
 
                 return RepViewHolder(view)
             }

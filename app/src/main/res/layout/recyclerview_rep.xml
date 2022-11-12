@@ -7,9 +7,10 @@
     <!-- TODO: OnClick -->
 
     <TextView
-        android:id="@+id/assignedUser"
+        android:id="@+id/is_complaint"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        style="@style/is_complaint"/>
 
     <TextView
         android:id="@+id/complaint"
