@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.grouptheory.roommate.DataClasses.Rep
 import com.grouptheory.roommate.DataClasses.User
-import com.grouptheory.roommate.ui.main.ComplaintsListAdapter
 import com.grouptheory.roommate.ui.main.MainViewModel
+import com.grouptheory.roommate.ui.main.RepListAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         // RecyclerView setup
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val adapter = ComplaintsListAdapter()
+        val adapter = RepListAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 

@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.grouptheory.roommate.DataClasses.Rep
 import com.grouptheory.roommate.R
 
-// TODO: Change to alerts, which should be the superclass of both complaints and chores
-class RepsListAdapter : ListAdapter<Rep, RepsListAdapter.RepViewHolder>(AlertsComparator()) {
+class RepListAdapter : ListAdapter<Rep, RepListAdapter.RepViewHolder>(AlertsComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepViewHolder {
         return RepViewHolder.create(parent)
