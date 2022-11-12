@@ -1,8 +1,6 @@
 package com.grouptheory.roommate.repository
 
-import android.renderscript.Sampler.Value
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -10,7 +8,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import com.grouptheory.roommate.DataClasses.Chore
+import com.grouptheory.roommate.DataClasses.Rep
 import com.grouptheory.roommate.DataClasses.Complaint
 import com.grouptheory.roommate.DataClasses.User
 
@@ -66,13 +64,13 @@ class FbRepository {
     }
 
     //may not need to use with updateUser
-    fun addNewChoreToUser(chore: Chore){
+    fun addNewChoreToUser(chore: Rep){
         var newRef = userRef.child("chores").push()
         chore.id = newRef.key.toString().toInt()
         newRef.setValue(chore)
     }
     //may not need to use with updateUser
-    fun updateChore(chore: Chore){
+    fun updateChore(chore: Rep){
         userRef.child("chores").child(chore.id.toString()).setValue(chore)
     }
     //may not need to use with updateUser
