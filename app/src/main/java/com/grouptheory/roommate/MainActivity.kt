@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.grouptheory.roommate.DataClasses.Rep
 import com.grouptheory.roommate.DataClasses.User
 import com.grouptheory.roommate.createRep.PostRepActivity
@@ -21,6 +22,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Assign FAB functionality
+        findViewById<FloatingActionButton>(R.id.roommate_view_FAB).setOnClickListener {
+            onRoommateViewClick()
+        }
 
         // RecyclerView setup
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -40,5 +46,9 @@ class MainActivity : AppCompatActivity() {
         var newIntent = Intent(this@MainActivity, PostRepActivity::class.java)
         newIntent.putExtra(PostRepActivity.USERNAME_EXTRA, "Carissa")
         startActivity(newIntent)
+    }
+
+    private fun onRoommateViewClick() {
+        TODO("Not yet implemented!")
     }
 }
