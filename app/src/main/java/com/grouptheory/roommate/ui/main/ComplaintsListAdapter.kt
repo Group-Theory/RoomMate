@@ -7,23 +7,23 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.grouptheory.roommate.DataClasses.Complaint
+import com.grouptheory.roommate.DataClasses.Rep
 import com.grouptheory.roommate.R
 
 // TODO: Change to alerts, which should be the superclass of both complaints and chores
-class ComplaintsListAdapter : ListAdapter<Complaint, ComplaintsListAdapter.ComplaintViewHolder>(AlertsComparator()) {
+class RepsListAdapter : ListAdapter<Rep, RepsListAdapter.RepViewHolder>(AlertsComparator()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComplaintViewHolder {
-        return ComplaintViewHolder.create(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepViewHolder {
+        return RepViewHolder.create(parent)
     }
 
-    override fun onBindViewHolder(holder: ComplaintViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RepViewHolder, position: Int) {
         val current = getItem(position)
         // TODO
         holder.bind(current.id.toString())
     }
 
-    class ComplaintViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class RepViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO: Other fields
         private val alertItemView: TextView
 
@@ -36,23 +36,23 @@ class ComplaintsListAdapter : ListAdapter<Complaint, ComplaintsListAdapter.Compl
         }
 
         companion object {
-            fun create(parent: ViewGroup): ComplaintViewHolder {
+            fun create(parent: ViewGroup): RepViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.recyclerview_alerts, parent, false)
 
-                return ComplaintViewHolder(view)
+                return RepViewHolder(view)
             }
         }
     }
 
-    class AlertsComparator : DiffUtil.ItemCallback<Complaint>() {
+    class AlertsComparator : DiffUtil.ItemCallback<Rep>() {
 
-        override fun areContentsTheSame(oldItem: Complaint, newItem: Complaint): Boolean {
+        override fun areContentsTheSame(oldItem: Rep, newItem: Rep): Boolean {
 
             return oldItem.id == newItem.id
         }
 
-        override fun areItemsTheSame(oldItem: Complaint, newItem: Complaint): Boolean {
+        override fun areItemsTheSame(oldItem: Rep, newItem: Rep): Boolean {
             return oldItem === oldItem
         }
     }
