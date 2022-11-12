@@ -20,6 +20,8 @@
         android:layout_marginStart="@dimen/big_padding"
         android:layout_marginTop="@dimen/big_padding"
         style="@style/main_user_score"
+        android:background="@drawable/fragment_border"
+        android:backgroundTint="@color/cream"
         android:text="@string/placeholder_score" />
 
     <!-- Recycler view that holds all assigned reps -->

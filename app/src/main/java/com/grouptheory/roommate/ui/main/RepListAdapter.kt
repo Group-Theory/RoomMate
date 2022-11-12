@@ -37,6 +37,15 @@ class RepListAdapter : ListAdapter<Rep, RepListAdapter.RepViewHolder>(AlertsComp
             itemView.context,
             R.color.white
         )
+        private val commendationBackgroundColor = ContextCompat.getColor(
+            itemView.context,
+            R.color.cream
+        )
+        private val commendationTextColor = ContextCompat.getColor(
+            itemView.context,
+            R.color.black
+        )
+
         private val scoreString = itemView.context.getString(R.string.score_template)
 
         init {
@@ -53,7 +62,9 @@ class RepListAdapter : ListAdapter<Rep, RepListAdapter.RepViewHolder>(AlertsComp
                 isComplaintView.text = "Complaint!"
             }
             else {
-                isComplaintView.text = "Commendation!"
+                isComplaintView.setBackgroundColor(commendationBackgroundColor)
+                isComplaintView.setTextColor(commendationTextColor)
+                isComplaintView.text = "Praise!"
             }
 
             // Set the description and score value

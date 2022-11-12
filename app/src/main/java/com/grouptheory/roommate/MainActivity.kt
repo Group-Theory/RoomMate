@@ -3,6 +3,7 @@ package com.grouptheory.roommate
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val mainViewModel: MainViewModel by viewModels {
         MainViewModel.MainViewModelFactory((application as RoomMateApplication).repository)
     }
+    private lateinit var currentUserScoreView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +40,19 @@ class MainActivity : AppCompatActivity() {
             // Update local data
             roommate?.let {
                 adapter.submitList(it.reps)
+            }
+        }
+
+        // Large score element in top left
+        currentUserScoreView = findViewById(R.id.userScore)
+
+        mainViewModel.userLiveData.observe(this) {
+            it?.let {
+                val scoreString = String.format(
+                    resources.getString(R.string.current_user_score_template),
+                    it.score
+                )
+                currentUserScoreView.text = scoreString
             }
         }
     }
