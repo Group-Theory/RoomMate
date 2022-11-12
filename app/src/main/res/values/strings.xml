@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RoomMate</string>
+    <string name="score_template">Score: %d</string>
 </resources>

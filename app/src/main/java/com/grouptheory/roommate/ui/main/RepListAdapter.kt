@@ -37,6 +37,7 @@ class RepListAdapter : ListAdapter<Rep, RepListAdapter.RepViewHolder>(AlertsComp
             itemView.context,
             R.color.white
         )
+        private val scoreString = itemView.context.getString(R.string.score_template)
 
         init {
             isComplaintView = itemView.findViewById(R.id.is_complaint)
@@ -57,7 +58,7 @@ class RepListAdapter : ListAdapter<Rep, RepListAdapter.RepViewHolder>(AlertsComp
 
             // Set the description and score value
             descriptionView.text = description
-            scoreView.text = score.toString()
+            scoreView.text = String.format(scoreString, score)
         }
 
         companion object {
