@@ -8,13 +8,26 @@
     tools:context=".MainActivity"
     android:background="@color/secondary_light">
 
-    <!-- TODO: User's personal score -->
+    <!-- User's score (top left of screen) -->
+    <TextView
+        android:id="@+id/userScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/mainRepRecyclerView"
+        android:layout_marginBottom="@dimen/big_padding"
+        android:layout_marginStart="@dimen/big_padding"
+        android:layout_marginTop="@dimen/big_padding"
+        style="@style/main_user_score"
+        android:text="@string/placeholder_score" />
 
+    <!-- Recycler view that holds all assigned reps -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainRepRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userScore"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +41,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginEnd="@dimen/big_padding"
         android:layout_marginBottom="@dimen/big_padding"
-        android:src="@drawable/ic_baseline_people_24" />
+        android:src="@drawable/ic_baseline_people_24"
+        android:contentDescription="@string/fab_accessibility_description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

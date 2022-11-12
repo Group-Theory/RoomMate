@@ -5,4 +5,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="rep_description_hint">What happened?</string>
     <string name="rep_post_button">Post</string>
+    <string name="placeholder_score">NA</string>
+    <string name="fab_accessibility_description">View Roommates</string>
 </resources>
