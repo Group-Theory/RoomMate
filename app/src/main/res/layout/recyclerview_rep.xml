@@ -10,16 +10,18 @@
         android:id="@+id/is_complaint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/is_complaint"/>
+        style="@style/list_item.is_complaint"/>
 
     <TextView
-        android:id="@+id/complaint"
+        android:id="@+id/description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        style="@style/list_item.description" />
 
     <TextView
-        android:id="@+id/dueDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:id="@+id/score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/list_item.score" />
 
 </LinearLayout>

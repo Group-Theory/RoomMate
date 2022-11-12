@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="is_complaint">
+    <style name="list_item">
+        <item name="android:paddingLeft">@dimen/list_item_padding</item>
+        <item name="android:paddingRight">@dimen/list_item_padding</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+    </style>
+
+    <style name="list_item.is_complaint">
         <item name="android:layout_marginBottom">0dp</item>
         <item name="android:background">@color/is_plus_rep</item>
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:paddingRight">8dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+    </style>
+
+    <style name="list_item.description">
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:background">@color/primary_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="list_item.score">
+        <item name="android:background">@color/primary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginBottom">@dimen/big_padding</item>
     </style>
 </resources>

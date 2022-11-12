@@ -19,13 +19,16 @@ class RepListAdapter : ListAdapter<Rep, RepListAdapter.RepViewHolder>(AlertsComp
 
     override fun onBindViewHolder(holder: RepViewHolder, position: Int) {
         val current = getItem(position)
-        // TODO
-        holder.bind(current.points)
+        holder.bind(current.points, current.description)
     }
 
     class RepViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // TODO: Other fields
-        private val isComplaint: TextView
+        // Individual text views
+        private val isComplaintView: TextView
+        private val descriptionView: TextView
+        private val scoreView: TextView
+
+        // Resources for changing the look depending on score
         private val complaintBackgroundColor = ContextCompat.getColor(
             itemView.context,
             R.color.is_complaint
@@ -36,18 +39,25 @@ class RepListAdapter : ListAdapter<Rep, RepListAdapter.RepViewHolder>(AlertsComp
         )
 
         init {
-            isComplaint = itemView.findViewById(R.id.is_complaint)
+            isComplaintView = itemView.findViewById(R.id.is_complaint)
+            descriptionView = itemView.findViewById(R.id.description)
+            scoreView = itemView.findViewById(R.id.score)
         }
 
-        fun bind(points: Int) {
-            if (points < 0) {
-                isComplaint.setBackgroundColor(complaintBackgroundColor)
-                isComplaint.setTextColor(complaintTextColor )
-                isComplaint.text = "Complaint!"
+        fun bind(score: Int, description: String) {
+            // Change look of title whether this is a complaint or commendation
+            if (score < 0) {
+                isComplaintView.setBackgroundColor(complaintBackgroundColor)
+                isComplaintView.setTextColor(complaintTextColor )
+                isComplaintView.text = "Complaint!"
             }
             else {
-                isComplaint.text = "Good work!"
+                isComplaintView.text = "Commendation!"
             }
+
+            // Set the description and score value
+            descriptionView.text = description
+            scoreView.text = score.toString()
         }
 
         companion object {
