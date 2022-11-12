@@ -13,10 +13,8 @@ import com.grouptheory.roommate.R
 import com.grouptheory.roommate.RoomMateApplication
 import com.grouptheory.roommate.ui.main.MainViewModel
 
-// TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM1 = "username"
 
 /**
  * A simple [Fragment] subclass.
@@ -68,11 +66,11 @@ class PostRepFragment : Fragment() {
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                //none
+                // Intentionally blank
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                //nothing
+                // Intentionally blank
             }
 
         })
@@ -83,7 +81,7 @@ class PostRepFragment : Fragment() {
             Log.d("onClick listener", username)
 
             postRepViewModel.addNewRep(newRep, username)
-            activity?.supportFragmentManager?.popBackStack()
+            activity?.finish()
         }
 
         return root
