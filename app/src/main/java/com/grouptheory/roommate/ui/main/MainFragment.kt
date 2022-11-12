@@ -6,15 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import com.grouptheory.roommate.R
+import com.grouptheory.roommate.RoomMateApplication
 
 class MainFragment : Fragment() {
-
+    private val viewModel: MainViewModel by viewModels {
+        MainViewModel.MainViewModelFactory((activity?.application as RoomMateApplication).repository)
+    }
     companion object {
         fun newInstance() = MainFragment()
     }
-
-    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,8 +28,8 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+//        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        viewModel.startFetchingData()
     }
 
 }
