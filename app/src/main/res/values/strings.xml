@@ -3,4 +3,6 @@
     <string name="score_template">Score: %d</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rep_description_hint">What happened?</string>
+    <string name="rep_post_button">Post</string>
 </resources>

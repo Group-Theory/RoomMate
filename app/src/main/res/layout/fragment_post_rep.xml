@@ -12,61 +12,54 @@
 
     <EditText
         android:id="@+id/editDescription"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="220dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/pointsSeekBar"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="description" />
-
-    <Button
-        android:id="@+id/postButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginBottom="142dp"
-        android:text="Post"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="@dimen/big_padding"
+        android:layout_marginStart="@dimen/big_padding"
+        android:layout_marginEnd="@dimen/big_padding"
+        android:gravity="center_horizontal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:inputType="textMultiLine"
+        android:hint="@string/rep_description_hint" />
 
     <SeekBar
         android:id="@+id/pointsSeekBar"
-        android:layout_width="195dp"
-        android:layout_height="123dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="39dp"
-        android:max="10"
-        android:min="-10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/xl_padding"
+        android:layout_marginStart="@dimen/xl_padding"
+        android:layout_marginEnd="@dimen/xl_padding"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/editDescription"
+        android:gravity="center_vertical"
+        android:max="10"
+        android:min="-10" />
 
     <TextView
         android:id="@+id/pointsDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="23dp"
-        android:editable="false"
-        android:text="Points: 0"
+        android:layout_marginTop="@dimen/big_padding"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintHeight_min="wrap"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pointsSeekBar"
-        app:layout_constraintWidth_min="wrap" />
-
-    <Spinner
-        android:id="@+id/usersSpinner"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/pointsSeekBar"
+        android:gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/postButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pointsDisplay"
+        android:gravity="center_horizontal"
+        android:text="@string/rep_post_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
