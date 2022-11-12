@@ -36,19 +36,7 @@ class MainActivity : AppCompatActivity() {
                 adapter.submitList(it.reps)
             }
         }
-        val reps1: List<Rep> = listOf(
-            Rep(id = 0, "He does not fortnite dance", 300000, 300000, 0, 16),
-            Rep(id = 1, "Did not shower (CS Major)", 300001, 300001, 0, -13),
-            Rep(id = 27, "Took out the trash", 300000, 300000, 0, 5),
-            Rep(id = 75, "Did not join ACM", 300000, 300000, 0, -38)
-        )
 
-        val user1 = User(userName = "Joe", "pw", score = 100, reps1)
-        mainViewModel.insertUser(user1)
-
-        val newRep = Rep(id = 0, "Killed my dog", 300, 0, 0, -10)
-
-//        mainViewModel.addNewRep(newRep, "Steve")
         var newIntent = Intent(this@MainActivity, PostRepActivity::class.java)
         intent.putExtra(PostRepActivity.USERNAME_EXTRA, "Carissa")
         startActivity(newIntent)
