@@ -24,18 +24,13 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.container, MainFragment.newInstance())
                 .commitNow()
         }
-        val complaints: List<Complaint> = listOf(
-            Complaint(id = 0, "Stays up too late", 300000, 0, 20, "nothing extra"),
-            Complaint(id = 1, "Too country", 300001, 0, 10, "nothing extra"),
-            Complaint(id = 75, "Did not apply for grad school", 300000, 0, 20, "nothing extra")
-        )
+
         val reps: List<Rep> = listOf(
-            Rep(id = 0, "Wash the car", 300, 0, 0, 10),
-            Rep(id = 1, "Dust the living room", 300, 0, 0, 10),
-            Rep(id = 15, "Turn on the heat", 300, 0, 0, 1),
+            Rep(id = 0, "Killed my dog", 300, 0, 0, -10),
+            Rep(id = 15, "Turned on the AC when I didn't want to", 300, 0, 0, 1),
         )
 
-        val user3: User = User(userName = "Carissa", "pw",  reps = reps, score = 100)
-        mainViewModel.insertUser(user3)
+        val user1: User = User(userName = "Steve", "pw",  reps = reps, score = 100)
+//        mainViewModel.insertUser(user1)
     }
 }

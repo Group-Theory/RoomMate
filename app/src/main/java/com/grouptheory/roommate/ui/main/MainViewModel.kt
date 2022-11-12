@@ -1,9 +1,11 @@
 package com.grouptheory.roommate.ui.main
 
+import android.text.LoginFilter.UsernameFilterGMail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.grouptheory.roommate.DataClasses.Rep
 import com.grouptheory.roommate.DataClasses.User
 import com.grouptheory.roommate.repository.FbRepository
 
@@ -38,5 +40,9 @@ class MainViewModel(private val mrepository: FbRepository): ViewModel() {
 
     fun insertUser(user: User){
         repository.addNewUser(user)
+    }
+
+    fun addNewRep(rep: Rep, userName: String){
+
     }
 }
