@@ -34,14 +34,22 @@ class MainActivity : AppCompatActivity() {
                 adapter.submitList(it.reps)
             }
         }
-        val reps: List<Rep> = listOf(
-            Rep(id = 0, "He does not fortnite dance", 300000, 300000, 0, -16),
+        val reps1: List<Rep> = listOf(
+            Rep(id = 0, "He does not fortnite dance", 300000, 300000, 0, 16),
             Rep(id = 1, "Did not shower (CS Major)", 300001, 300001, 0, -13),
             Rep(id = 27, "Took out the trash", 300000, 300000, 0, 5),
             Rep(id = 75, "Did not join ACM", 300000, 300000, 0, -38)
         )
 
-        val user1 = User(userName = "Joe", "pw", score = 100, )
+        val user1 = User(userName = "Joe", "pw", score = 100, reps1)
         mainViewModel.insertUser(user1)
+
+        val reps2: List<Rep> = listOf(
+            Rep(id = 0, "Killed my dog", 300, 0, 0, -10),
+            Rep(id = 15, "Turned on the AC when I didn't want to", 300, 0, 0, 1),
+        )
+
+        val user2: User = User(userName = "Mama", "wp",  reps = reps2, score = 100)
+       mainViewModel.insertUser(user2)
     }
 }
