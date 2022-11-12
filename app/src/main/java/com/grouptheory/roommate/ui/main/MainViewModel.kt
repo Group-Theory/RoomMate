@@ -31,4 +31,12 @@ class MainViewModel(private val mrepository: FbRepository): ViewModel() {
             throw java.lang.IllegalArgumentException("Unknown ViewModel Class")
         }
     }
+
+    fun updateUser(user: User){
+        repository.updateUser(user)
+    }
+
+    fun insertUser(user: User){
+        repository.addNewUser(user)
+    }
 }

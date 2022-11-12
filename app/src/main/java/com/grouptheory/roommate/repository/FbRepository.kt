@@ -10,6 +10,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.grouptheory.roommate.DataClasses.Chore
+import com.grouptheory.roommate.DataClasses.Complaint
 import com.grouptheory.roommate.DataClasses.User
 
 class FbRepository {
@@ -17,14 +19,9 @@ class FbRepository {
     private val _houseName = "our_house"
     val database = Firebase.database
 
-    val houseRef = database.getReference(_houseName)
-    var userRef = houseRef.child(_username)
+    private val houseRef = database.getReference(_houseName)
+    private var userRef = houseRef.child(_username)
 
-    lateinit var user: User
-
-    init{ //create a blank user to start with
-        user = User("blank user here", "blank PWHash here", score = 0)
-    }
 
     //run this at the start/creation of the app to start fetching house and user data
     fun fetchHouseData(liveData: MutableLiveData<List<User>>) {
@@ -58,5 +55,34 @@ class FbRepository {
                 Log.e("fetch User Data", "Error User Data Cancelled")
             }
         }))
+    }
+
+    fun updateUser(user: User){
+        userRef.setValue(user)
+    }
+
+    fun addNewUser(user: User){
+        houseRef.child(user.userName).setValue(user)
+    }
+
+    //may not need to use with updateUser
+    fun addNewChoreToUser(chore: Chore){
+        var newRef = userRef.child("chores").push()
+        chore.id = newRef.key.toString().toInt()
+        newRef.setValue(chore)
+    }
+    //may not need to use with updateUser
+    fun updateChore(chore: Chore){
+        userRef.child("chores").child(chore.id.toString()).setValue(chore)
+    }
+    //may not need to use with updateUser
+    fun addNewComplaint(complaint: Complaint){
+        var newRef = userRef.child("complaints").push()
+        complaint.id = newRef.key.toString().toInt()
+        newRef.setValue(complaint)
+    }
+    //may not need to use with updateUser
+    fun updateComplaint(complaint: Complaint){
+        userRef.child("complaints").child(complaint.id.toString()).setValue(complaint)
     }
 }
