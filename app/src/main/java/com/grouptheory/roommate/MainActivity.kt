@@ -3,23 +3,34 @@ package com.grouptheory.roommate
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.grouptheory.roommate.ui.main.MainFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.grouptheory.roommate.ui.main.ComplaintsListAdapter
 import com.grouptheory.roommate.ui.main.MainViewModel
 
 class MainActivity : AppCompatActivity() {
+
     private val mainViewModel: MainViewModel by viewModels {
         MainViewModel.MainViewModelFactory((application as RoomMateApplication).repository)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        mainViewModel.startFetchingData()
-
         setContentView(R.layout.activity_main)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
-                .commitNow()
+
+        // RecyclerView setup
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        val adapter = ComplaintsListAdapter()
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        // Begin observing data
+        mainViewModel.startFetchingData()
+        mainViewModel.userLiveData.observe(this) { roommates ->
+            // Update local data
+            roommates?.let {
+                adapter.submitList(it.complaints)
+            }
         }
     }
 }
