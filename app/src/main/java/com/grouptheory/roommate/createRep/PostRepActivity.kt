@@ -1,10 +1,17 @@
 package com.grouptheory.roommate.createRep
 
+import android.database.DataSetObserver
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AbsSpinner
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.SeekBar
+import android.widget.Spinner
+import android.widget.SpinnerAdapter
 import android.widget.TextView
 import androidx.activity.viewModels
 import com.grouptheory.roommate.DataClasses.Rep
@@ -22,6 +29,8 @@ class PostRepActivity : AppCompatActivity() {
     private lateinit var postButton : Button
     private lateinit var pointsBar: SeekBar
     private lateinit var pointDisplay: TextView
+    private lateinit var usersSpinner: Spinner
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_rep)
@@ -30,6 +39,7 @@ class PostRepActivity : AppCompatActivity() {
         postButton = findViewById(R.id.postButton)
         pointsBar = findViewById(R.id.pointsSeekBar)
         pointDisplay = findViewById(R.id.pointsDisplay)
+        usersSpinner = findViewById(R.id.usersSpinner)
         pointDisplay.text = "Points: 0"
 
         pointsBar.setOnSeekBarChangeListener( object : SeekBar.OnSeekBarChangeListener {
@@ -54,7 +64,20 @@ class PostRepActivity : AppCompatActivity() {
             Log.d("onClick listener", username)
 
             mainViewModel.addNewRep(newRep, username)
+            finish()
         }
+
+        var arrayAdapter : ArrayAdapter<String>
+        mainViewModel.roommatesLiveData.observe(this) {
+            var arrayOfUserNames : Array<String> = emptyArray()
+            it.forEach { user ->
+                Log.d("username", user.userName)
+                arrayOfUserNames.plus(user.userName)
+            }
+            arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayOfUserNames)
+            usersSpinner.adapter = arrayAdapter
+        }
+
     }
 
     companion object{

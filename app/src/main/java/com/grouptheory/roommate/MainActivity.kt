@@ -30,15 +30,15 @@ class MainActivity : AppCompatActivity() {
 
         // Begin observing data
         mainViewModel.startFetchingData()
-        mainViewModel.userLiveData.observe(this) { roommates ->
+        mainViewModel.userLiveData.observe(this) { roommate ->
             // Update local data
-            roommates?.let {
+            roommate?.let {
                 adapter.submitList(it.reps)
             }
         }
 
         var newIntent = Intent(this@MainActivity, PostRepActivity::class.java)
-        intent.putExtra(PostRepActivity.USERNAME_EXTRA, "Carissa")
+        newIntent.putExtra(PostRepActivity.USERNAME_EXTRA, "Carissa")
         startActivity(newIntent)
     }
 }
